@@ -1,6 +1,6 @@
 package com.example.savchuk.newsappmvvm.api
 
-import com.example.savchuk.newsappmvvm.NewsResponse
+import com.example.savchuk.newsappmvvm.models.NewsResponse
 import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
