@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:text="Hello World!"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
