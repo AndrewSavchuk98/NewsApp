@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">NewsAppMVVM</string>
+    <string name="et_search">Search...</string>
+    <string name="source">SOURCE</string>
+    <string name="title">TITLE</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="add_to_favorite_btn">Add_to_favorite_btn</string>
+    <string name="articleimage">ArticleImage</string>
+    <string name="published_at">PUBLISHED AT</string>
 </resources>
