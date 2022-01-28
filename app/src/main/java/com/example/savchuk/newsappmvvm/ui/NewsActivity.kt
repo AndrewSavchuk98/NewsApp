@@ -17,17 +17,22 @@ import com.example.savchuk.newsappmvvm.repository.NewsRepository
 
 class NewsActivity : AppCompatActivity() {
 
-    lateinit var viewModel: NewsViewModel
+    //lateinit var viewModel: NewsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        NewsRepository.initialize(this)
         val binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = NewsRepository(ArticleDataBase(this))
-        val viewModelProvideFactory = NewsViewModelProvideFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelProvideFactory).get(NewsViewModel::class.java )
+       /* val repository = NewsRepository(ArticleDataBase(this))
+        val viewModelProviderFactory = NewsViewModelProvideFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+      // viewModel = ViewModelProvider(this, viewModelProvideFactory).get(NewsViewModel::class.java )*/
 
+        /*val newsRepository = NewsRepository(this)
+        val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)*/
 
 
         val newsNavHostFragment = supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
