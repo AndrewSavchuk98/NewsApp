@@ -4,26 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/wvArticle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBreakingNews"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ProgressBar
-        android:id="@+id/pbArticle"
+        android:id="@+id/paginationProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <TextView
+        android:id="@+id/tvEmptyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="36dp"
-        android:contentDescription="@string/add_to_favorite_btn"
-        android:src="@drawable/ic_favorite"
-        app:fabSize="normal" />
+        android:layout_gravity="center"
+        android:text="@string/empty_list"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
 </FrameLayout>

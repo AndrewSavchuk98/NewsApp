@@ -3,25 +3,28 @@ package com.example.savchuk.newsappmvvm.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.savchuk.newsappmvvm.models.Article
-import com.example.savchuk.newsappmvvm.models.NewsResponse
+import com.example.savchuk.newsappmvvm.data.models.Article
+import com.example.savchuk.newsappmvvm.data.models.NewsResponse
 import com.example.savchuk.newsappmvvm.repository.NewsRepository
 import com.example.savchuk.newsappmvvm.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class NewsViewModel() : ViewModel() {
-
-    private val newsRepository = NewsRepository.get()
+@HiltViewModel
+class NewsViewModel @Inject constructor(
+    private val newsRepository: NewsRepository
+) : ViewModel() {
 
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
 
-    var breakingNewsResponse: NewsResponse? = null
+    private var breakingNewsResponse: NewsResponse? = null
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
-    var searchNewsResponse: NewsResponse? = null
+    private var searchNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("us")

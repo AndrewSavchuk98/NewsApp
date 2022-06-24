@@ -7,87 +7,77 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savchuk.newsappmvvm.R
 import com.example.savchuk.newsappmvvm.adapters.NewsAdapter
-import com.example.savchuk.newsappmvvm.databinding.FragmentBraekingNewsBinding
+import com.example.savchuk.newsappmvvm.databinding.FragmentNewsBinding
 import com.example.savchuk.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.savchuk.newsappmvvm.utils.Constantes
-import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.QUERY_PAGE_SIZE
+import com.example.savchuk.newsappmvvm.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.savchuk.newsappmvvm.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
-private const val TAG = "BreakingNewsFragment"
-const val ARTICLE_KEY = "article"
 
+@AndroidEntryPoint
 class BreakingNewsFragment : Fragment() {
 
-    private var _binding: FragmentBraekingNewsBinding? = null
+    private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: NewsViewModel by lazy {
-        ViewModelProvider(this).get(NewsViewModel::class.java)
-    }
-    lateinit var newsAdapter: NewsAdapter
+    private val viewModel: NewsViewModel by viewModels (  )
+    private lateinit var newsAdapter: NewsAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentBraekingNewsBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+    ): View {
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable(ARTICLE_KEY, it)
-            }
+        newsAdapter.setOnItemClickListener { article->
+            val args = ArticleFragmentArgs(article)
             findNavController().navigate(
                 R.id.action_breakingNewsFragment_to_articleFragment,
-                bundle
+                args.toBundle()
             )
         }
 
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { responce ->
-            when (responce) {
+        viewModel.breakingNews.observe(viewLifecycleOwner) { response ->
+            when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
-                    responce.data?.let { newsResponse ->
+                    response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
-                        if (isLastPage){
+                        if (isLastPage) {
                             binding.rvBreakingNews.setPadding(0, 0, 0, 0)
                         }
                     }
                 }
                 is Resource.Loading -> {
                     showProgressBar()
-                    responce.data?.let { newResponse ->
+                    response.data?.let { newResponse ->
                         newsAdapter.differ.submitList(newResponse.articles)
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
-                    responce.message?.let { message ->
+                    response.message?.let { message ->
                         Log.e(TAG, message)
                     }
                 }
             }
-
-        })
-
-
+        }
     }
 
     private fun hideProgressBar() {
@@ -107,14 +97,13 @@ class BreakingNewsFragment : Fragment() {
             adapter = newsAdapter
             addOnScrollListener(this@BreakingNewsFragment.scrollListener)
         }
-
     }
 
     var isLoading = false
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
@@ -148,4 +137,8 @@ class BreakingNewsFragment : Fragment() {
         _binding = null
     }
 
+    companion object {
+        private const val TAG = "BreakingNewsFragment"
+        const val ARTICLE_KEY = "article"
+    }
 }

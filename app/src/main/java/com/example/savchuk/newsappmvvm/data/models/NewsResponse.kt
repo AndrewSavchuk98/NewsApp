@@ -1,6 +1,4 @@
-package com.example.savchuk.newsappmvvm.models
-
-import com.example.savchuk.newsappmvvm.models.Article
+package com.example.savchuk.newsappmvvm.data.models
 
 data class NewsResponse(
     val articles: MutableList<Article>,

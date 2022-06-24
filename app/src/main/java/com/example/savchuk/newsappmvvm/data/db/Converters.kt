@@ -1,7 +1,7 @@
-package com.example.savchuk.newsappmvvm.db
+package com.example.savchuk.newsappmvvm.data.db
 
 import androidx.room.TypeConverter
-import com.example.savchuk.newsappmvvm.models.Source
+import com.example.savchuk.newsappmvvm.data.models.Source
 
 class Converters {
 

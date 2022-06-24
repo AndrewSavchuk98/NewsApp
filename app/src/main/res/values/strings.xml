@@ -7,4 +7,9 @@
     <string name="add_to_favorite_btn">Add_to_favorite_btn</string>
     <string name="articleimage">ArticleImage</string>
     <string name="published_at">PUBLISHED AT</string>
+    <string name="success_delete">Successfully deleted article</string>
+    <string name="empty_list">Empty list</string>
+    <string name="breaking_news">Breaking News</string>
+    <string name="saved_news">Saved News</string>
+    <string name="search_news">Search News</string>
 </resources>

@@ -1,13 +1,10 @@
-package com.example.savchuk.newsappmvvm.db
+package com.example.savchuk.newsappmvvm.data.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.savchuk.newsappmvvm.models.Article
-import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.NAME_DATABASE
-import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.VERSION_DATA_BASE
+import com.example.savchuk.newsappmvvm.data.models.Article
+import com.example.savchuk.newsappmvvm.utils.Constants.Companion.VERSION_DATA_BASE
 
 @Database(
     entities = [
@@ -19,6 +16,4 @@ import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.VERSION_DATA_B
 abstract class ArticleDataBase :RoomDatabase(){
 
     abstract fun getArticleDao() :ArticleDAO
-
-
 }

@@ -1,8 +1,9 @@
-package com.example.savchuk.newsappmvvm.models
+package com.example.savchuk.newsappmvvm.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
+
 
 @Entity(
     tableName = "articles"
@@ -18,4 +19,12 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-) : Serializable
+) : Serializable {
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+}

@@ -1,7 +1,7 @@
-package com.example.savchuk.newsappmvvm.api
+package com.example.savchuk.newsappmvvm.data.remote
 
-import com.example.savchuk.newsappmvvm.models.NewsResponse
-import com.example.savchuk.newsappmvvm.utils.Constantes.Companion.API_KEY
+import com.example.savchuk.newsappmvvm.data.models.NewsResponse
+import com.example.savchuk.newsappmvvm.utils.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
