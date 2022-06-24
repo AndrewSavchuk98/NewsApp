@@ -1,1 +1,1 @@
-# NewsApp (Kotlin + MVVM + Retrofit + Hilt + Room)
+# NewsApp (Kotlin + MVVM + Retrofit + Hilt + Room + Coroutines)
