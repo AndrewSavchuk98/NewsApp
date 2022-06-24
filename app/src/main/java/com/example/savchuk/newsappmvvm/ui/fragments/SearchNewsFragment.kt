@@ -6,17 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.savchuk.newsappmvvm.R
 import com.example.savchuk.newsappmvvm.adapters.NewsAdapter
 import com.example.savchuk.newsappmvvm.databinding.FragmentSearchNewsBinding
-import com.example.savchuk.newsappmvvm.ui.fragments.BreakingNewsFragment.Companion.ARTICLE_KEY
 import com.example.savchuk.newsappmvvm.ui.viewmodel.NewsViewModel
 import com.example.savchuk.newsappmvvm.utils.Constants
 import com.example.savchuk.newsappmvvm.utils.Constants.Companion.SEARCH_NEWS_TIME_DELAY

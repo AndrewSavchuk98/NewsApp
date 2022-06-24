@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.savchuk.newsappmvvm.R
 import com.example.savchuk.newsappmvvm.databinding.ActivityNewsBinding
-import com.example.savchuk.newsappmvvm.repository.NewsRepository
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
