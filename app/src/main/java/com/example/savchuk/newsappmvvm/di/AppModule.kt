@@ -2,11 +2,11 @@ package com.example.savchuk.newsappmvvm.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.savchuk.newsappmvvm.BuildConfig
 import com.example.savchuk.newsappmvvm.data.db.ArticleDAO
 import com.example.savchuk.newsappmvvm.data.db.ArticleDataBase
 import com.example.savchuk.newsappmvvm.data.remote.NewsAPI
 import com.example.savchuk.newsappmvvm.utils.Constants
-import com.example.savchuk.newsappmvvm.utils.Constants.Companion.API_KEY
 import com.example.savchuk.newsappmvvm.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -46,7 +46,7 @@ object AppModule {
             .addInterceptor(Interceptor { chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
-                    .header("apiKey", API_KEY)
+                    .header("apiKey", BuildConfig.API_KEY)
                 val request = requestBuilder.build()
                 chain.proceed(request)
             })
